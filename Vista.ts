@@ -2,7 +2,7 @@ import { Presentador } from "./Presentador";
 
 export class Vista {
   private presentador!: Presentador;
-  private readline: any;
+  private readline: any; //Atributo para hacer la entrada de datos con pregunta
 
   constructor() {
     this.readline = require('readline').createInterface({ //Crea la interfaz de la pregunta
@@ -11,12 +11,12 @@ export class Vista {
     });
   }
 
-  agregarPresentador(presenter: Presentador) {
+  agregarPresentador(presenter: Presentador) { // Llama al presentador
     this.presentador = presenter;
   }
 
   mostrarResultado(result: number) {
-    console.log(`El resultado es: ${result}`);
+    console.log(`El resultado es: ${result}`); //Muestra el resultado
     this.readline.close();
   }
 
@@ -34,7 +34,8 @@ export class Vista {
         }
       }
     );
-  }
+  } // Realiza la solicitud de datos y le da una equivalencia en string dependiendo de lo ingresado para luego
+    // usarlo en el metodo gestionar conversion en el presentador
 
   ingresoDatosConversion(solicitud: string) {
     this.readline.question('Ingrese la temperatura: ', (temperatura: string) => {
@@ -47,4 +48,4 @@ export class Vista {
       this.presentador.gestionarConversion(parsedTemperatura, solicitud);
     });
   }
-}
+} // Este metodo solicita que se ingrese un valor y si no es valido lo menciona con un mensaje
